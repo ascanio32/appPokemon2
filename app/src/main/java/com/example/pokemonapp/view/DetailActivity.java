@@ -44,12 +44,12 @@ public class DetailActivity extends AppCompatActivity implements DetailContract.
         pokemon = (Pokemon) getIntent().getSerializableExtra("pokemon"); // Obtiene el Pokémon pasado a través del Intent
 
         SharedPreferences sharedPreferences = getSharedPreferences("favorites", MODE_PRIVATE); // Inicializa las preferencias compartidas y el presentador
-        presenter = new DetailPresenter(this, sharedPreferences);
+        presenter = new DetailPresenter(this, sharedPreferences, this.getApplicationContext());
 
         presenter.loadPokemonDetails(pokemon.getNumber()); // Carga los detalles del Pokémon y verifica si es favorito
         presenter.checkIfFavorite(pokemon);
 
-        favoriteButton.setOnClickListener(v -> presenter.toggleFavorite(pokemon)); // Configura los listeners para los botones
+        favoriteButton.setOnClickListener(v -> presenter.toggleFavorite(pokemon, this.getApplicationContext() )); // Configura los listeners para los botones
         ibatras.setOnClickListener(v -> finish());
     }
 

@@ -49,7 +49,10 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         });
         //configuracion del recyclerview vertical
         recyclerView = findViewById(R.id.rv);
-        listaPokemonAdapter = new ListaPokemonAdapter(this, false);
+        Pokemon specificPokemon = new Pokemon();
+        specificPokemon.setName("picachu");
+        specificPokemon.setNumber(25);
+        listaPokemonAdapter = new ListaPokemonAdapter(this, false,specificPokemon);
         recyclerView.setAdapter(listaPokemonAdapter);
         recyclerView.setHasFixedSize(true);
         GridLayoutManager layoutManager = new GridLayoutManager(this, 3);
@@ -57,10 +60,21 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
         // Configuración del RecyclerView horizontal
         rvHorizontal = findViewById(R.id.rvHorizontal);
-        horizontalAdapter = new ListaPokemonAdapter(this, true);
+        horizontalAdapter = new ListaPokemonAdapter(this, true,specificPokemon);
         rvHorizontal.setAdapter(horizontalAdapter);
         LinearLayoutManager horizontalLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         rvHorizontal.setLayoutManager(horizontalLayoutManager);
+
+        // Configuración del RecyclerView horizontal para el Pokémon específico
+        /*rvHorizontal = findViewById(R.id.rvHorizontal);
+        Pokemon specificPokemon = new Pokemon();
+        specificPokemon.setName("Pikachu");
+        specificPokemon.setNumber(25);
+        // Configura otros atributos del Pokémon según sea necesario
+        horizontalAdapter = new ListaPokemonAdapter(this, true, specificPokemon);
+        rvHorizontal.setAdapter(horizontalAdapter);
+        LinearLayoutManager horizontalLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        rvHorizontal.setLayoutManager(horizontalLayoutManager);*/
 
         // Inicializa el presentador y carga los datos de Pokémon
         presenter = new MainPresenter(this);

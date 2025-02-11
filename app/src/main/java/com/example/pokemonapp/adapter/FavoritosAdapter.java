@@ -1,6 +1,7 @@
 package com.example.pokemonapp.adapter;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,6 +52,11 @@ public class FavoritosAdapter extends RecyclerView.Adapter<FavoritosAdapter.View
             presenter.removeFavorite(pokemon);  // Llama al método removeFavorite del presentador para eliminar el Pokémon de favoritos
             notifyItemRemoved(position);   // Notifica al adaptador que un elemento ha sido eliminado
             notifyItemRangeChanged(position,favoritePokemons.size());   // Notifica al adaptador que el rango de elementos ha cambiado
+
+
+            /*// Reproducir el sonido de "me gusta" o "quitar me gusta"
+            MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.like); // Cambia a like_sound si es necesario
+            mediaPlayer.start();*/
         });
     }
 

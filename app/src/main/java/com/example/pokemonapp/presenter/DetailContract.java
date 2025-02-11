@@ -1,6 +1,8 @@
 // DetailContract.java
 package com.example.pokemonapp.presenter;
 
+import android.content.Context;
+
 import com.example.pokemonapp.model.Pokemon;
 
 public interface DetailContract {  //Contrato que define la comunicación entre la vista y el presentador para la pantalla de detalles de un Pokémon.
@@ -15,7 +17,7 @@ public interface DetailContract {  //Contrato que define la comunicación entre 
 
     interface Presenter {//Interfaz que define los métodos que el presentador debe implementar.
         void loadPokemonDetails(int pokemonNumber);//Carga los detalles de un Pokémon.
-        void toggleFavorite(Pokemon pokemon); //Alterna el estado de favorito de un Pokémon.
+        void toggleFavorite(Pokemon pokemon, Context context); //Alterna el estado de favorito de un Pokémon.
         void checkIfFavorite(Pokemon pokemon);//Verifica si un Pokémon es favorito.
     }
 }

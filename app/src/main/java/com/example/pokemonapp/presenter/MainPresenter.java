@@ -4,6 +4,8 @@ package com.example.pokemonapp.presenter;
 import com.example.pokemonapp.model.Pokemon;
 import com.example.pokemonapp.model.PokemonRespuesta;
 import com.example.pokemonapp.pokeApi.PokeApiService;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 

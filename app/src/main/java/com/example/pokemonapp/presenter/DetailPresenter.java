@@ -1,7 +1,11 @@
 // DetailPresenter.java
 package com.example.pokemonapp.presenter;
 
+import android.content.Context;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
+
+import com.example.pokemonapp.R;
 import com.example.pokemonapp.model.Pokemon;
 import com.example.pokemonapp.pokeApi.PokeApiService;
 import com.google.gson.Gson;
@@ -17,13 +21,13 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class DetailPresenter implements DetailContract.Presenter {// Presentador que maneja la lógica de negocio para la pantalla de detalles de un Pokémon.
+public class  DetailPresenter implements DetailContract.Presenter {// Presentador que maneja la lógica de negocio para la pantalla de detalles de un Pokémon.
     private DetailContract.View view; // Referencia a la vista
     private SharedPreferences sharedPreferences;// Preferencias compartidas para almacenar los favoritos
     private Retrofit retrofit;// Cliente Retrofit para realizar llamadas a la API
     private List<Pokemon> favoritePokemons;// Lista de Pokémon favoritos
 
-    public DetailPresenter(DetailContract.View view, SharedPreferences sharedPreferences) {//Constructor que inicializa el presentador con la vista y las preferencias compartidas.
+    public DetailPresenter(DetailContract.View view, SharedPreferences sharedPreferences, Context context) {//Constructor que inicializa el presentador con la vista y las preferencias compartidas.
         //view la vista que implementa DetailContract.View. sharedPreferences las preferencias compartidas para almacenar los favoritos.
         this.view = view;
         this.sharedPreferences = sharedPreferences;
@@ -65,13 +69,22 @@ public class DetailPresenter implements DetailContract.Presenter {// Presentador
     }
 
     @Override
-    public void toggleFavorite(Pokemon pokemon) {
+    public void toggleFavorite(Pokemon pokemon, Context context) {
         if (isFavorite(pokemon)) {
-           removeFavorite(pokemon);// Elimina el Pokémon de favoritos si ya es favorito
+            removeFavorite(pokemon); // Elimina el Pokémon de favoritos si ya es favorito
+
+            // Reproducir el sonido de "quitar me gusta"
+            MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.like);
+            mediaPlayer.start();
         } else {
-           addFavorite(pokemon);// Añade el Pokémon a favoritos si no es favorito
+            addFavorite(pokemon); // Añade el Pokémon a favoritos si no es favorito
+
+            // Reproducir el sonido de "me gusta"
+            MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.like);
+            mediaPlayer.start();
         }
     }
+
 
     @Override
     public void checkIfFavorite(Pokemon pokemon) {
