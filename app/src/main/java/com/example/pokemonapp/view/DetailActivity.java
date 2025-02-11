@@ -1,6 +1,7 @@
 // DetailActivity.java
 package com.example.pokemonapp.view;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -22,10 +23,12 @@ import java.util.List;
 public class DetailActivity extends AppCompatActivity implements DetailContract.View {
     private ImageView imageView;
     private ImageButton favoriteButton, ibatras;
-    private TextView nameTextView, baseExperienceTextView, heightTextView, weightTextView, abilitiesTextView;
+    private TextView nameTextView, baseExperienceTextView, heightTextView, weightTextView, abilitiesTextView,identificacionTextView;
+    private TextView orderTextView;
     private DetailPresenter presenter;
     private Pokemon pokemon;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +43,8 @@ public class DetailActivity extends AppCompatActivity implements DetailContract.
         weightTextView = findViewById(R.id.weightTextView);
         abilitiesTextView = findViewById(R.id.abilitiesTextView);
         ibatras = findViewById(R.id.ibatras);
+        identificacionTextView = findViewById(R.id.idTextView);
+
 
         pokemon = (Pokemon) getIntent().getSerializableExtra("pokemon"); // Obtiene el Pokémon pasado a través del Intent
 
@@ -70,6 +75,7 @@ public class DetailActivity extends AppCompatActivity implements DetailContract.
             abilitiesString.setLength(abilitiesString.length() - 2);// Elimina la última coma y espacio
         }
         abilitiesTextView.setText("Habilidades: " + abilitiesString.toString());
+        identificacionTextView.setText("Identificacion: " + detailedPokemon.getIdentificacion());
 
         // Carga la imagen del Pokémon usando Glide
         String imageUrl ="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + pokemon.getNumber()+".png";

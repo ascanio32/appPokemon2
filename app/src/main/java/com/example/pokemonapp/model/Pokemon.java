@@ -11,8 +11,16 @@ public class Pokemon implements Serializable {
     private int height;// Altura del Pokémon
     private int weight; // Peso del Pokémon
     private List<Ability> abilities;// Lista de habilidades del Pokémon
+    private int id;
 
-    // Getters y setters Para obtener y establecer
+    public int getIdentificacion() {
+        return id;
+    }
+
+    public void setIdentificacion(int identificacion) {
+        this.id = identificacion;
+    }
+// Getters y setters Para obtener y establecer
 
     public String getName() {
         return name;
